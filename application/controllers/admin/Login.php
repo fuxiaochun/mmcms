@@ -8,9 +8,9 @@ class Login extends CI_Controller{
 	}
 
 	public function index(){
-		if($this->session->get_userdata('user')){
+		if($this->session->userdata('user')){
 			redirect($this->config->item('base_url').'/admin/home');
-			return;
+			exit;
 		}
 		$this->load->view('admin/login');
 	}
