@@ -1,0 +1,38 @@
+<?php
+
+class Login extends CI_Controller{
+
+	public function __construct(){
+		parent::__construct();
+		$this->load->library('session');
+	}
+
+	public function index(){
+		if($this->session->get_userdata('user')){
+			redirect($this->config->item('base_url').'/admin/home');
+			return;
+		}
+		$this->load->view('admin/login');
+	}
+
+	public function check(){
+		$user = isset($_POST['user']) ? $_POST['user'] : '';
+		$password = isset($_POST['pwd']) ? $_POST['pwd'] : '';
+		$captcha = isset($_POST['captcha']) ? $_POST['captcha'] : '';
+		$this->load->model('Manager');
+
+		$user_info = $this->Manager->getInfoByUser($user);
+
+		if (empty($user_info)) {
+			echo '0';
+			return;
+		}
+
+		if ($user_info['user'] == $user && $user_info['password'] == md5($password) && $user_info['captcha'] == $captcha) {
+			$this->session->set_userdata('user',$user_info['user']);
+			echo '1';
+		}else{
+			echo '0';
+		}
+	}
+}
