@@ -16,7 +16,7 @@ class Admin_Controller extends MY_Controller{
 		// 权限验证
 		if (!$this->session->user){
 			$base_url = $this->config->item('base_url');
-			redirect($base_url.'/admin/login');
+			redirect(base_url('admin/login'));
 			exit;
 		}
 	}

@@ -1,0 +1,70 @@
+/* CSS Document */
+/* author fuxiaochun.com */
+
+body{margin:0;font-family:Microsoft YaHei;font-size:12px;color:#333;}
+a{text-decoration:none;color:#333;}
+a:hover{color:#F30;}
+img{border:none;}
+p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,select{margin:0;padding:0;}
+
+.L{float:left;display:inline;}
+.R{float:right;display:inline;}
+.C{width:0;display:block;overflow:hidden;clear:both;}
+
+.ml10{margin-left:10px;}
+
+
+/* top */
+.top{height:100px;background-color:#333;overflow:hidden;color:#ddd;}
+.top a{color:#ddd;}
+.top a:hover{color:#FFF;}
+.logo{margin:25px 0px 0px 30px;width:150px;}
+.nav{width:400px;height:50px;margin-top:35px;margin-left:50px;}
+.nav li{list-style:none;width:80px;height:40px;line-height:30px;float:left;display:inline;text-align:center;font-size:14px;}
+.nav li a{display:block;height:40px;}
+.nav li a:hover,.nav li.on{background:url(../images/active.gif) no-repeat center bottom;}
+.nav li.on a{color:#FFF;}
+.user{text-align:right;padding-right:20px;height:30px;line-height:30px;margin-top:50px;}
+.user a{padding:0px 10px;}
+
+/* left */
+.left{padding:10px 0px;background-color:#EEE;}
+.left li{height:40px;line-height:40px;text-indent:30px;border-bottom:1px #CCCCCC solid;font-size:14px;}
+.left li.on a{font-weight:bold;color:#000;}
+
+/* main */
+#mainWarp{padding:0px 20px;}
+.breadNav{height:50px;line-height:50px;overflow:hidden;}
+.breadNav i{font-style:normal;font-family:'宋体';padding:0px 10px;}
+.desTxt{line-height:20px;}
+.desTxt p{padding:5px 0px;}
+
+
+/* message */
+.Msg{font-size:20px;line-height:40px;padding:50px 0px 0px 30px;font-weight:normal;color:#000;}
+.Msg i{font-style:normal;}
+.rightMsg{color:#090;}
+.errorMsg{color:#F00;}
+
+/* form */
+.formWarp{padding-bottom:30px;}
+.formWarp li{list-style:none;line-height:30px;margin-top:10px;overflow:hidden;}
+.formWarp li i{padding-left:10px;font-style:normal;color:#999;}
+.formWarp li label{width:100px;height:30px;display:inline-block;}
+.formWarp .stxt{width:150px;border:1px #CCCCCC solid;height:20px;line-height:20px;padding:4px;}
+.formWarp .mtxt{width:350px;border:1px #CCCCCC solid;height:20px;line-height:20px;padding:4px;}
+.formWarp .stxtarea{width:350px;height:60px;resize:none;border:1px #CCCCCC solid;padding:4px;line-height:20px;font-size:12px;color:#333;}
+.subBtn{width:120px;height:40px;border:1px #F00 solid;background-color:#F30;color:#FFF;font-size:16px;font-family:Microsoft YaHei;text-align:center;cursor:pointer;border-radius:3px;}
+.select{height:30px;border:1px #CCCCCC solid;display:inline-block;}
+
+.formSearch{padding-top:10px;line-height:30px;}
+.formSearch .scBtn,.formSearch .addBtn{width:80px;height:30px;border:none;background-color:#069;color:#FFF;font-size:14px;font-weight:bold;border-radius:3px;cursor:pointer;}
+.formSearch .addBtn{display:inline-block;text-align:center;background-color:#090;}
+.formSearch label{padding:0px 5px;}
+
+.mainList{padding:10px 0px;}
+.mainList table{border:1px #eee solid;width:96%;}
+.mainList th{line-height:30px;background-color:#E7E7E7;text-align:left;}
+.mainList td,.mainList th{border-bottom:1px #eee solid;border-collapse:collapse;line-height:24px;padding:8px;}
+table tr:hover td{background-color:#f7f7f7;}
+.mainList a{padding-right:10px;color:#069;}

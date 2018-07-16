@@ -18,6 +18,8 @@ create table `manager`(
 	`del` tinyint(1) default 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
+insert into manager values(null, 'admin', md5('admin023'), '023', 0, '','', 0);
+
 /*网站信息表*/
 create table `sub_site`(
 	`id` tinyint(1) unsigned auto_increment primary key,
