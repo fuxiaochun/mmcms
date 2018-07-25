@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>网站后台管理系统</title>
+<link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+</head>
+
+<body id="mainWarp">
+<div class="breadNav">
+  <span>当前位置：</span><a href="main.html" target="_self">系统</a><i>&gt;</i><a href="main.html">欢迎信息</a>
+</div>
+<div class="formWarp">
+  <form method="POST" id="form" action="<?=site_url('admin/siteinfo/add')?>">
+    <ul>
+      <li><label>站点域名：</label><input type="text" id="domain" name="domain" class="mtxt" value="<?=$site_info['domain']?>" /><i class="show">站点域名不能为空！</i></li>
+      <li><label>站点名称：</label><input type="text"id="name" name="name" class="mtxt" value="<?=$site_info['name']?>" /><i>站点名称不能为空！</i></li>
+      <li><label class="L">网站关键词：</label><textarea id="keywords" name="keywords" class="stxtarea"><?=$site_info['keywords']?></textarea><i class="show">网站关键词不能为空！</i></li>
+      <li><label class="L">网站描述：</label><textarea id="description" name="description" class="stxtarea"><?=$site_info['description']?></textarea><i>网站描述不能为空！</i></li>
+      <li><label></label><input type="button" value="提 交" class="subBtn" /></li>
+    </ul>
+  </form>
+</div>
+<script src="<?=base_url('public/js/jquery.min.js')?>"></script>
+<script src="<?=base_url('public/js/siteinfo.js')?>"></script>
+</body>
+</html>
