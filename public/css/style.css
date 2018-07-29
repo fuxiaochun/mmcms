@@ -13,6 +13,8 @@ p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,select{margin:0;padding:0;}
 
 .ml10{margin-left:10px;}
 
+.red{color: #F00;}
+
 
 /* top */
 .top{height:100px;background-color:#333;overflow:hidden;color:#ddd;}
@@ -30,6 +32,7 @@ p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,select{margin:0;padding:0;}
 /* left */
 .left{padding:10px 0px;background-color:#EEE;}
 .left li{height:40px;line-height:40px;text-indent:30px;border-bottom:1px #CCCCCC solid;font-size:14px;}
+.left li a{display: block;}
 .left li.on a{font-weight:bold;color:#000;}
 
 /* main */
@@ -48,7 +51,7 @@ p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,select{margin:0;padding:0;}
 
 
 /* form */
-.formWarp{padding-bottom:30px;}
+.formWarp{padding-bottom:30px;padding-right: 50px;}
 .formWarp li{list-style:none;line-height:30px;margin-top:10px;overflow:hidden;}
 .formWarp li i{padding-left:10px;font-style:normal;color:#999;display: none;}
 .formWarp li i.show{display: inline-block;}
@@ -58,15 +61,32 @@ p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,select{margin:0;padding:0;}
 .formWarp .stxtarea{width:350px;height:60px;resize:none;border:1px #CCCCCC solid;padding:4px;line-height:20px;font-size:12px;color:#333;}
 .subBtn{width:120px;height:40px;border:1px #F00 solid;background-color:#F30;color:#FFF;font-size:16px;font-family:Microsoft YaHei;text-align:center;cursor:pointer;border-radius:3px;}
 .select{height:30px;border:1px #CCCCCC solid;display:inline-block;}
+.formWarp .formLabel{width:100px;height:30px;display:inline-block;float: left;}
+.formWarp .formInput{float: left;}
 
-.formSearch{padding-top:10px;line-height:30px;}
+.formHandle{padding: 10px 0;overflow: hidden;}
+.formHandle .addInfo{float: left;}
+.formHandle .formSearch{float: right;}
+.formHandle .addBtn{display: inline-block;padding: 10px 20px;border: 1px solid #CCC;}
+
+.formSearch{line-height:30px;}
 .formSearch .scBtn,.formSearch .addBtn{width:80px;height:30px;border:none;background-color:#069;color:#FFF;font-size:14px;font-weight:bold;border-radius:3px;cursor:pointer;}
 .formSearch .addBtn{display:inline-block;text-align:center;background-color:#090;}
 .formSearch label{padding:0px 5px;}
 
 .mainList{padding:10px 0px;}
-.mainList table{border:1px #eee solid;width:96%;}
+.mainList table{border:1px #eee solid;width:100%;}
 .mainList th{line-height:30px;background-color:#E7E7E7;text-align:left;}
 .mainList td,.mainList th{border-bottom:1px #eee solid;border-collapse:collapse;line-height:24px;padding:8px;}
 table tr:hover td{background-color:#f7f7f7;}
 .mainList a{padding-right:10px;color:#069;}
+
+/* pagination */
+.pagination{
+    padding: 10px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.pagination a,.pagination span{display: inline-block;border: 1px solid #CCC;height:20px;line-height:20px;padding:5px 10px;text-align:center;margin: 0 5px;}
+.pagination span{font-weight: bold;cursor: auto;}

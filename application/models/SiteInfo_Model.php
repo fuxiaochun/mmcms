@@ -14,9 +14,24 @@ class SiteInfo_Model extends Base_Model{
 		}
 	}
 
-	public function updateSiteInfo($data=[]){
+	public function updateSiteInfo($data=[], $id){
 		if(!empty($data)){
-			$query = $this->db->replace('site_info',$data);
+			$this->db->where('id', $id);
+			$query = $this->db->update('site_info',$data);
+		}
+	}
+
+	public function postData($data=[]){
+		if(!empty($data)){
+			foreach($data as $k=>$v){
+				$post_data[$k] = $v;
+			}
+			$info = $this->getSiteInfo();
+			if(empty($info)){
+				$this->addSiteInfo($post_data);
+			}else{
+				$this->updateSiteInfo($post_data, $info['id']);
+			}
 		}
 	}
 }

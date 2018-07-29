@@ -25,7 +25,7 @@ class SiteInfo extends Admin_Controller{
 			'description' => $description
 		];
 		if($domain && $name && $keywords && $description){
-			$this->SiteInfo_Model->addSiteInfo($post_data);
+			$this->SiteInfo_Model->postData($post_data);
 			toast(base_url('admin/siteinfo'), 2, '数据提交成功！');
 		}else{
 			toast(base_url('admin/siteinfo'), 2, '表单数据不全，请完善后再提交!');

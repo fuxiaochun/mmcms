@@ -69,13 +69,15 @@ create table `article_visited`(
 /*单页表*/
 create table `page`(
 	`id` int unsigned auto_increment primary key,
-	`focus_img` varchar(200),
-	`title` varchar(200) not null default '',
+	`title` varchar(200) not null,
+	`alias` varchar(200) not null,
 	`keywords` varchar(200) default '',
 	`description` varchar(400) default '',
 	`content` text default '',
 	`del` tinyint(1) default 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+
 
 /*证书*/
 create table `certificate`(
