@@ -7,21 +7,28 @@ class Pages extends Admin_Controller{
 	}
 	public function index(){
 
-		$pages_count = $this->Pages_Model->getCount();
-		var_dump($_REQUEST);
 		$cur_page = isset($_GET['p']) ? $_GET['p'] : 1;
-		$limit = 1;
+		$search = isset($_GET['s']) ? $_GET['s'] : '';
+		$pages_count = $this->Pages_Model->getCount($search);
+		$limit = 10;
 		$start = $limit * ($cur_page - 1);
-		$res = $this->Pages_Model->getPages($limit, $start);
+		$res = $this->Pages_Model->getPages($limit, $start, $search);
+		$data['search'] = $search;
 		$data['pages'] = $res;
 
 		$this->load->library('pagination');
-		$config['base_url'] = base_url('/admin/pages/index');
+		if($search){
+			$config['base_url'] = base_url('/admin/pages/index?s='.$search);
+		}else{
+			$config['base_url'] = base_url('/admin/pages/index');
+		}
 		$config['total_rows'] = $pages_count;
 		$config['per_page'] = $limit;
 		$config['use_page_numbers'] = true;
 		$config['page_query_string'] = true;
 		$config['query_string_segment'] = 'p';
+		$config['first_link'] = '首页';
+		$config['last_link'] = '尾页';
 		$config['cur_tag_open'] = '<span>';
 		$config['cur_tag_close'] = '</span>';
 		$this->pagination->initialize($config);
@@ -49,10 +56,23 @@ class Pages extends Admin_Controller{
 			'content' => $content
 		];
 		if($title && $alias){
-			$this->Pages_Model->add($post_data);
-			toast(base_url('admin/pages'), 2, '页面创建成功！');
+			if($this->Pages_Model->add($post_data)){
+				toast(base_url('admin/pages'), 2, '页面创建成功！');
+				return;
+			}
+			toast(base_url('admin/pages/create'), 2, '页面创建失败!');
+
 		}else{
 			toast(base_url('admin/pages/create'), 2, '表单数据不全，请完善后再提交!');
+		}
+	}
+
+	public function delete(){
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		if($this->Pages_Model->delete($id)){
+			toast($_SERVER['HTTP_REFERER'], 2, '删除成功！');
+		}else{
+			toast($_SERVER['HTTP_REFERER'], 2, '删除失败！');
 		}
 	}
 }
