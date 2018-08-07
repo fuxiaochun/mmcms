@@ -78,10 +78,10 @@ create table `certificate`(
 	`id` int unsigned auto_increment primary key,
 	`year` varchar(4) not null,
 	`certificate` varchar(12) not null,
-	`name` varchar(20) not null,
-	`texture` varchar(20) not null,
-	`size` varchar(20) not null,
-	`weight` varchar(20) not null,
+	`name` varchar(50) not null,
+	`texture` varchar(50) not null,
+	`size` varchar(50) not null,
+	`weight` varchar(50) not null,
 	`product_img` varchar(50) not null
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
