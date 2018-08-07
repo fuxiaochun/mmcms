@@ -2,7 +2,7 @@
 
 class Category_Model extends Base_Model{
 
-    public function getPages($num, $limit, $search){
+    public function getList($num, $limit, $search){
         $search && $this->db->like('name', $search);
         $this->db->limit($num, $limit);
         $query = $this->db->get('category');
@@ -12,6 +12,12 @@ class Category_Model extends Base_Model{
     public function getCount($search){
         $search && $this->db->like('name', $search);
         return $this->db->count_all_results('category');
+    }
+
+    public function getCategoryTree(){
+        $query = $this->db->get('category');
+        $res = $query->result_array();
+        return $res;
     }
 
     public function add($data=[]){

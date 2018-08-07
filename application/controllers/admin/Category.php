@@ -13,7 +13,7 @@ class Category extends Admin_Controller{
 		$pages_count = $this->Category_Model->getCount($search);
 		$limit = 10;
 		$start = $limit * ($cur_page - 1);
-		$res = $this->Category_Model->getPages($limit, $start, $search);
+		$res = $this->Category_Model->getList($limit, $start, $search);
 		$data['search'] = $search;
 		$data['category'] = $res;
 
@@ -39,7 +39,9 @@ class Category extends Admin_Controller{
 	}
 
 	public function create(){
-		$this->load->view('admin/category_create.html');
+		$cats = $this->Category_Model->getCategoryTree();
+		$data['categorys'] = $cats;
+		$this->load->view('admin/category_create.html', $data);
 	}
 
 	public function add(){
