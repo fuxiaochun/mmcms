@@ -80,6 +80,8 @@ class Category extends Admin_Controller{
 	public function update(){
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
 		$info = $this->Category_Model->getInfoById($id);
+		$cats = $this->Category_Model->getCategoryTree();
+		$data['categorys'] = $cats;
 		$data['info'] = $info;
 		$this->load->view('admin/category_update.html', $data);
 	}
