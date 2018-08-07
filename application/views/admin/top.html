@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+<script type="text/javascript" src="<?=base_url('public/js/jquery.min.js')?>" /></script>
+<script type="text/javascript" src="<?=base_url('public/js/tab.js')?>" /></script>
+<script type="text/javascript">
+$(function(){
+  $('.nav a').click(function(){
+	 window.parent.rightFrame.location.href=$(this).attr('data-right'); 
+  });	  
+})
+</script>
+</head>
+
+<body>
+<div class="top">
+  <div class="logo L"><img src="<?=base_url('public/images/logo.gif')?>" width="120" height="54" alt="网站管理后台"/></div>
+  <div class="nav L">
+    <ul>
+      <li class="on"><a href="left.html" data-right="main.html" target="leftFrame">系统</a></li>
+      <li><a href="left-article.html" data-right="article-list.html" target="leftFrame">文章</a></li>
+      <li><a href="left-category.html" data-right="category-list.html" target="leftFrame">分类</a></li>
+      <li><a href="left-ad.html" data-right="adcate-list.html" target="leftFrame">广告</a></li>
+      <li><a href="left-plugin.html" data-right="plugin-list.html" target="leftFrame">插件</a></li>
+    </ul>
+  </div>
+  <div class="user R">
+    <span>管理员：admin</span><a href="password.html" target="rightFrame">修改密码</a><a href="">退出</a>
+  </div>
+</div>
+</body>
+</html>
