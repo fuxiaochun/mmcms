@@ -58,7 +58,7 @@
             <td><?=$v['alias'];?></td>
             <td><?=$v['keywords'];?></td>
             <td><?=$v['description'];?></td>
-            <td><a href="#">修改</a> <a href="<?=site_url('admin/pages/delete?id=').$v['id'];?>" onclick="return confirm('确认删除?');">删除</a></td>
+            <td><a href="<?=site_url('admin/pages/update?id=').$v['id'];?>">修改</a> <a href="<?=site_url('admin/pages/delete?id=').$v['id'];?>" onclick="return confirm('确认删除?');">删除</a></td>
           </tr>
           <?php endforeach;?>
         </tbody>

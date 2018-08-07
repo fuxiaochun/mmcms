@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>创建页面</title>
+<link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+<link type="text/css" rel="stylesheet" href="<?=base_url('public/umeditor/themes/default/css/umeditor.css')?>">
+</head>
+
+<body id="mainWarp">
+<div class="breadNav">
+  <span>当前位置：</span><a href="<?=site_url('admin/pages')?>" target="_self">页面管理</a><i>&gt;</i><span>创建页面</span>
+</div>
+<div class="formWarp">
+    <form id="form" action="<?=site_url('admin/pages/edit')?>" method="post">
+        <input type="hidden" name="id" value="<?=$info['id']?>">
+        <ul>
+            <li><label class="formLabel"><span class="red">*</span>页面名称：</label>
+                <div class="formInput">
+                    <input type="text" id="title" name="title" class="mtxt" value="<?=$info['title']?>"/>
+                    <i>页面名称必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>别名：</label>
+                <div class="formInput">
+                    <input type="input" id="alias" name="alias" class="mtxt" value="<?=$info['alias']?>"/>
+                    <i>别名为英文或拼音，必填项</i>
+                </div>
+            </li>
+            <li><label class="formLabel">关键词：</label>
+                <div class="formInput">
+                    <input type="text" id="keywords" name="keywords" class="mtxt" value="<?=$info['keywords']?>"/>
+                    <i></i>
+                </div>
+            </li>
+            <li><label class="formLabel">页面描述：</label>
+                <div class="formInput">
+                    <textarea id="description" name="description" class="stxtarea"><?=$info['description']?></textarea>
+                    <i></i>
+                </div>
+            </li>
+            <li><label class="formLabel">页面内容：</label></li>
+            <li>
+                <div class="formInput">
+                    <textarea name="content" id="content"><?=$info['content']?></textarea>
+                    <i></i>
+                </div>
+            </li>
+            <li><label></label></li>
+            <li><label></label><input type="button" value="提 交" class="subBtn" /></li>
+        </ul>
+    </form>
+
+
+
+<script type="text/javascript" src="<?=base_url('public/js/jquery.min.js')?>"></script>
+<script type="text/javascript" charset="utf-8" src="<?=base_url('public/umeditor/umeditor.config.js')?>"></script>
+<script type="text/javascript" charset="utf-8" src="<?=base_url('public/umeditor/umeditor.min.js')?>"></script>
+<script type="text/javascript">
+$(function(){
+    UM.getEditor('content',{initialFrameWidth:"100%",initialFrameHeight:'400'});	
+
+    var $title = $('#title');
+    var $alias = $('#alias');
+    var $keywords = $('#keywords');
+    var $description = $('#description');
+    var $content = $('#content');
+
+    $('#form').on('blur','input',function(){
+        checkVal($(this));
+    });
+    $('#form').on('blur','textarea',function(){
+        checkVal($(this));
+    });
+    function checkVal($el){
+        if($el.val().trim() === ''){
+            $el.siblings('i').addClass('show');
+            return false;
+        }else{
+            $el.siblings('i').removeClass('show');
+            return true;
+        }
+    }
+    function validate(){
+        var status = true;
+        !checkVal($title) && (status = false);
+        !checkVal($alias) && (status = false);
+        !checkVal($content) && (status = false);
+        return status;
+    }
+    $('.subBtn').on('click',function(){
+        if(validate()){
+            $('#form').submit();
+        }
+    });
+
+
+})
+</script>
+</div>
+</body>
+</html>

@@ -75,4 +75,39 @@ class Pages extends Admin_Controller{
 			toast($_SERVER['HTTP_REFERER'], 2, '删除失败！');
 		}
 	}
+
+	public function update(){
+		$id = isset($_GET['id']) ? $_GET['id'] : 0;
+		$info = $this->Pages_Model->getInfoById($id);
+		$data['info'] = $info;
+		$this->load->view('admin/pages_update.html', $data);
+	}
+
+	public function edit(){
+		$id = isset($_POST['id']) ? $_POST['id'] : '';
+		$title = isset($_POST['title']) ? $_POST['title'] : '';
+		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
+		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+		$description = isset($_POST['description']) ? $_POST['description'] : '';
+		$content = isset($_POST['content']) ? $_POST['content'] : '';
+
+		$post_data = [
+			'id' => $id,
+			'title' => $title,
+			'alias' => $alias,
+			'keywords' => $keywords,
+			'description' => $description,
+			'content' => $content
+		];
+		if($id && $title && $alias){
+			if($this->Pages_Model->update($post_data)){
+				toast(base_url('admin/pages'), 2, '修改成功！');
+				return;
+			}
+			toast(base_url('admin/pages/update?id=').$id, 2, '修改失败!');
+
+		}else{
+			toast(base_url('admin/pages/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+		}
+	}
 }

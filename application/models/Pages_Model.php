@@ -26,6 +26,22 @@ class Pages_Model extends Base_Model{
             return $this->db->delete('page');
         }
     }
+
+    public function getInfoById($id){
+        if($id){
+            $this->db->where('id', $id);
+            $query = $this->db->get('page');
+            return $query -> row_array();
+        }
+    }
+
+    public function update($data=[]){
+		if(!empty($data)){
+            $this->db->where('id',$data['id']);
+			return $this->db->update('page',$data);
+		}
+    }
+
 }
 
 ?>
