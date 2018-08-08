@@ -16,7 +16,7 @@
 	<div class="wrap">
 		<div class="logo">管理后台登录</div>
 		<div class="form">
-			<input placeholder="用户名" type="text" name="user">
+			<input placeholder="用户名" type="text" name="user" autofocus>
 			<input placeholder="密码" type="password" name="pwd">
 			<input placeholder="认证码" type="password" name="captcha">
 			<button class="submit">登 录</button>
