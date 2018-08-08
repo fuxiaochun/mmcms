@@ -25,6 +25,11 @@
                 <div class="formInput">
                     <select name="pid" id="pid" class="mselect">
                         <option selected value="0">顶级分类</option>
+                        <?php foreach($categorys as $k=>$v):?>
+                        <?php if($v['id'] !== $info['id']):?>
+                        <option value="<?=$v['id']?>"><?=$v['name']?></option>
+                        <?php endif;?>
+                        <?php endforeach;?>
                     </select>
                     <i></i>
                 </div>
