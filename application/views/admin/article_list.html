@@ -2,19 +2,19 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>分类管理</title>
+<title>内容管理</title>
 <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
 </head>
 
 <body id="mainWarp">
 <div class="breadNav">
-  <span>当前位置：</span><span>分类管理</span><i>&gt;</i><span>分类列表</span>
+  <span>当前位置：</span><span>内容管理</span><i>&gt;</i><span>内容列表</span>
 </div>
 <div class="formWarp">
     <div class="formHandle">
-        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/category/create')?>">添加分类</a></div>
+        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/article/create')?>">添加内容</a></div>
         <div class="formSearch">
-            <form action="<?=site_url('admin/category/index')?>" method="get">
+            <form action="<?=site_url('admin/article/index')?>" method="get">
               <label class="ml10">分类名称：</label>
               <input type="text" name="s" class="mtxt" value="<?=$search;?>"/>
               <input type="submit" class="scBtn ml10" value="查询" />
@@ -24,19 +24,19 @@
   
   <form action="" method="post">
     <div class="mainList">
-    <?php if(empty($category)):?>
+    <?php if(empty($article)):?>
         <table border="0" cellpadding="0" cellspacing="0">
             <tbody>
                 <tr>
                 <th width="45">ID</th>
-                <th width="120">分类名称</th>
-                <th width="80">PID</th>
+                <th width="120">内容名称</th>
+                <th width="80">别名</th>
                 <th width="*">关键词</th>
                 <th width="*">描述</th>
                 <th width="100">操作</th>
                 </tr>
                 <tr>
-                <td colspan="6" align="center">分类查询结果为0，去<a href="<?=site_url('admin/category/create')?>">创建分类</a></td>
+                <td colspan="6" align="center">内容查询结果为0，去<a href="<?=site_url('admin/article/create')?>">创建内容</a></td>
                 </tr>
             </tbody>
         </table>
@@ -45,20 +45,20 @@
         <tbody>
           <tr>
             <th width="45">ID</th>
-            <th width="120">分类名称</th>
-            <th width="80">PID</th>
+            <th width="120">内容名称</th>
+            <th width="80">别名</th>
             <th width="*">关键词</th>
             <th width="*">描述</th>
             <th width="100">操作</th>
           </tr>
-          <?php foreach($category as $v):?>
+          <?php foreach($article as $v):?>
           <tr>
             <td><?=$v['id'];?></td>
-            <td><?=$v['name'];?></td>
-            <td><?=$v['pid'];?></td>
+            <td><?=$v['title'];?></td>
+            <td><?=$v['alias'];?></td>
             <td><?=$v['keywords'];?></td>
             <td><?=$v['description'];?></td>
-            <td><a href="<?=site_url('admin/category/update?id=').$v['id'];?>">修改</a> <a href="<?=site_url('admin/category/delete?id=').$v['id'];?>" onclick="return confirm('确认删除?');">删除</a></td>
+            <td><a href="<?=site_url('admin/article/update?id=').$v['id'];?>">修改</a> <a href="<?=site_url('admin/article/delete?id=').$v['id'];?>" onclick="return confirm('确认删除?');">删除</a></td>
           </tr>
           <?php endforeach;?>
         </tbody>

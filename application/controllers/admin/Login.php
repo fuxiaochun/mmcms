@@ -38,7 +38,7 @@ class Login extends CI_Controller{
 
 	public function logout(){
 		$this->session->unset_userdata('user');
-		if($_SESSION['user']){
+		if($this->session->userdata('user')){
 			echo '0';
 		}else{
 			echo '1';

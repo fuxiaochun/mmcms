@@ -9,7 +9,7 @@
 
 <body id="mainWarp">
 <div class="breadNav">
-  <span>当前位置：</span><a href="<?=site_url('admin/pages')?>" target="_self">页面管理</a><i>&gt;</i><span>创建页面</span>
+  <span>当前位置：</span><span>页面管理</span><i>&gt;</i><span>创建页面</span>
 </div>
 <div class="formWarp">
     <form id="form" action="<?=site_url('admin/pages/add')?>" method="post">
@@ -57,7 +57,7 @@
 <script type="text/javascript" charset="utf-8" src="<?=base_url('public/umeditor/umeditor.min.js')?>"></script>
 <script type="text/javascript">
 $(function(){
-    UM.getEditor('content',{initialFrameWidth:"100%",initialFrameHeight:'400'});	
+    UM.getEditor('content',{initialFrameWidth:"90%",initialFrameHeight:'400'});	
 
     var $title = $('#title');
     var $alias = $('#alias');

@@ -5,12 +5,20 @@
 <title>无标题文档</title>
 <link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
 <script type="text/javascript" src="<?=base_url('public/js/jquery.min.js')?>" /></script>
-<script type="text/javascript" src="<?=base_url('public/js/tab.js')?>" /></script>
 <script type="text/javascript">
 $(function(){
   $('.nav a').click(function(){
 	 window.parent.rightFrame.location.href=$(this).attr('data-right'); 
   });	  
+  $('#logout').click(function(){
+    $.get("<?=site_url('admin/login/logout')?>", function(res){
+      if(res == 1){
+        window.parent.location.reload();
+      }else{
+        alert('退出失败，请重试');
+      }
+    });
+  });
 })
 </script>
 </head>
@@ -28,7 +36,7 @@ $(function(){
     </ul>
   </div>
   <div class="user R">
-    <span>管理员：admin</span><a href="password.html" target="rightFrame">修改密码</a><a href="">退出</a>
+    <span>管理员：admin</span><a href="#" target="rightFrame">修改密码</a><a id="logout" href="javascript:;">退出</a>
   </div>
 </div>
 </body>
