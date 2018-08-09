@@ -12,11 +12,11 @@
 </div>
 <div class="formWarp">
     <div class="formHandle">
-        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/article/create')?>">添加内容</a></div>
+        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/article/add')?>">添加内容</a></div>
         <div class="formSearch">
             <form action="<?=site_url('admin/article/index')?>" method="get">
-              <label class="ml10">分类名称：</label>
-              <input type="text" name="s" class="mtxt" value="<?=$search;?>"/>
+              <label class="ml10"></label>
+              <input type="text" name="s" class="mtxt" placeholder="输入标题进行查询" value="<?=$search;?>"/>
               <input type="submit" class="scBtn ml10" value="查询" />
             </form>
         </div>
@@ -36,7 +36,7 @@
                 <th width="100">操作</th>
                 </tr>
                 <tr>
-                <td colspan="6" align="center">内容查询结果为0，去<a href="<?=site_url('admin/article/create')?>">创建内容</a></td>
+                <td colspan="6" align="center">内容查询结果为0，去<a href="<?=site_url('admin/article/add')?>">创建内容</a></td>
                 </tr>
             </tbody>
         </table>

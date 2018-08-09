@@ -63,7 +63,7 @@ input, textarea{font-family: 'Microsoft YaHei';}
 .formWarp .stxtarea{width:350px;height:60px;resize:none;border:1px #CCCCCC solid;padding:4px;line-height:20px;font-size:12px;color:#333;}
 .subBtn{width:120px;height:40px;border:1px #F00 solid;background-color:#F30;color:#FFF;font-size:16px;font-family:Microsoft YaHei;text-align:center;cursor:pointer;border-radius:3px;}
 .select{height:30px;border:1px #CCCCCC solid;display:inline-block;}
-.formWarp .formLabel{width:100px;height:30px;display:inline-block;float: left;}
+.formWarp .formLabel{width:100px;height:30px;display:inline-block;float: left;text-align: right;padding-right: 10px;}
 .formWarp .formInput{float: left;}
 
 .formHandle{padding: 10px 0;overflow: hidden;}

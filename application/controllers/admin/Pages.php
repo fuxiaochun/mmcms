@@ -37,33 +37,33 @@ class Pages extends Admin_Controller{
 		$this->load->view('admin/pages_list.html', $data);
 	}
 
-	public function create(){
-		$this->load->view('admin/pages_create.html');
-	}
-
 	public function add(){
-		$title = isset($_POST['title']) ? $_POST['title'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
-		$description = isset($_POST['description']) ? $_POST['description'] : '';
-		$content = isset($_POST['content']) ? $_POST['content'] : '';
-
-		$post_data = [
-			'title' => $title,
-			'alias' => $alias,
-			'keywords' => $keywords,
-			'description' => $description,
-			'content' => $content
-		];
-		if($title && $alias){
-			if($this->Pages_Model->add($post_data)){
-				toast(base_url('admin/pages'), 2, '页面创建成功！');
-				return;
-			}
-			toast(base_url('admin/pages/create'), 2, '页面创建失败!');
-
+		if(empty($_POST)){
+			$this->load->view('admin/pages_create.html');
 		}else{
-			toast(base_url('admin/pages/create'), 2, '表单数据不全，请完善后再提交!');
+			$title = isset($_POST['title']) ? $_POST['title'] : '';
+			$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
+			$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+			$description = isset($_POST['description']) ? $_POST['description'] : '';
+			$content = isset($_POST['content']) ? $_POST['content'] : '';
+
+			$post_data = [
+				'title' => $title,
+				'alias' => $alias,
+				'keywords' => $keywords,
+				'description' => $description,
+				'content' => $content
+			];
+			if($title && $alias){
+				if($this->Pages_Model->add($post_data)){
+					toast(base_url('admin/pages'), 2, '页面创建成功！');
+					return;
+				}
+				toast(base_url('admin/pages/create'), 2, '页面创建失败!');
+
+			}else{
+				toast(base_url('admin/pages/create'), 2, '表单数据不全，请完善后再提交!');
+			}
 		}
 	}
 
@@ -77,37 +77,38 @@ class Pages extends Admin_Controller{
 	}
 
 	public function update(){
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$info = $this->Pages_Model->getInfoById($id);
-		$data['info'] = $info;
-		$this->load->view('admin/pages_update.html', $data);
-	}
-
-	public function edit(){
-		$id = isset($_POST['id']) ? $_POST['id'] : '';
-		$title = isset($_POST['title']) ? $_POST['title'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
-		$description = isset($_POST['description']) ? $_POST['description'] : '';
-		$content = isset($_POST['content']) ? $_POST['content'] : '';
-
-		$post_data = [
-			'id' => $id,
-			'title' => $title,
-			'alias' => $alias,
-			'keywords' => $keywords,
-			'description' => $description,
-			'content' => $content
-		];
-		if($id && $title && $alias){
-			if($this->Pages_Model->update($post_data)){
-				toast(base_url('admin/pages'), 2, '修改成功！');
-				return;
-			}
-			toast(base_url('admin/pages/update?id=').$id, 2, '修改失败!');
-
+		if(empty($_POST)){
+			$id = isset($_GET['id']) ? $_GET['id'] : 0;
+			$info = $this->Pages_Model->getInfoById($id);
+			$data['info'] = $info;
+			$this->load->view('admin/pages_update.html', $data);
 		}else{
-			toast(base_url('admin/pages/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+			$id = isset($_POST['id']) ? $_POST['id'] : '';
+			$title = isset($_POST['title']) ? $_POST['title'] : '';
+			$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
+			$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+			$description = isset($_POST['description']) ? $_POST['description'] : '';
+			$content = isset($_POST['content']) ? $_POST['content'] : '';
+
+			$post_data = [
+				'id' => $id,
+				'title' => $title,
+				'alias' => $alias,
+				'keywords' => $keywords,
+				'description' => $description,
+				'content' => $content
+			];
+			if($id && $title && $alias){
+				if($this->Pages_Model->update($post_data)){
+					toast(base_url('admin/pages'), 2, '修改成功！');
+					return;
+				}
+				toast(base_url('admin/pages/update?id=').$id, 2, '修改失败!');
+
+			}else{
+				toast(base_url('admin/pages/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+			}
 		}
 	}
+
 }

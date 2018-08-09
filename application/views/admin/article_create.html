@@ -25,7 +25,7 @@
                     <select name="category_id" id="category_id" class="mselect">
                         <option value="0">请选择分类</option>
                         <?php foreach($categorys as $k=>$v):?>
-                        <option value="<?=$v['id']?>"><?=$v['name']?></option>
+                        <option value="<?=$v['id']?>"><?php echo str_repeat('　', $v['level']-1);?><?=$v['name']?></option>
                         <?php endforeach;?>
                     </select>
                     <i>分类必选</i>
@@ -70,7 +70,7 @@
             <li><label class="formLabel">是否推荐：</label>
                 <div class="formInput">
                     <label for="recommend">
-                        <input type="checkbox" name="recommend" id="recommend">
+                        <input type="checkbox" name="recommend" id="recommend" value="1">
                     </label>
                     <i></i>
                 </div>

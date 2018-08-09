@@ -12,7 +12,7 @@
   <span>当前位置：</span><span>分类管理</span><i>&gt;</i><span>创建分类</span>
 </div>
 <div class="formWarp">
-    <form id="form" action="<?=site_url('admin/category/edit')?>" method="post">
+    <form id="form" action="<?=site_url('admin/category/update')?>" method="post">
         <input type="hidden" name="id" value="<?=$info['id']?>">
         <ul>
             <li><label class="formLabel"><span class="red">*</span>分类名称：</label>
@@ -27,7 +27,7 @@
                         <option value="0">顶级分类</option>
                         <?php foreach($categorys as $k=>$v):?>
                         <?php if($v['id'] !== $info['id']):?>
-                        <option <?php echo $v['id']==$info['pid'] ? 'selected' : '';?> value="<?=$v['id']?>"><?=$v['name']?></option>
+                        <option <?php echo $v['id']==$info['pid'] ? 'selected' : '';?> value="<?=$v['id']?>"><?php echo str_repeat('　', $v['level']);?><?=$v['name']?></option>
                         <?php endif;?>
                         <?php endforeach;?>
                     </select>

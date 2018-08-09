@@ -6,7 +6,7 @@ class Category extends Admin_Controller{
 		parent::__construct();
 		$this->load->model('Category_Model');
 	}
-	public function index(){
+	public function index_bak(){
 
 		$cur_page = isset($_GET['p']) ? $_GET['p'] : 1;
 		$search = isset($_GET['s']) ? $_GET['s'] : '';
@@ -38,34 +38,41 @@ class Category extends Admin_Controller{
 		$this->load->view('admin/category_list.html', $data);
 	}
 
-	public function create(){
+	public function index(){
 		$cats = $this->Category_Model->getCategoryTree();
-		$data['categorys'] = $cats;
-		$this->load->view('admin/category_create.html', $data);
+		$data['category'] = $cats;
+		$this->load->view('admin/category_list.html', $data);
 	}
 
 	public function add(){
-		$name = isset($_POST['name']) ? $_POST['name'] : '';
-		$pid = isset($_POST['pid']) ? $_POST['pid'] : 0;
-		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
-		$description = isset($_POST['description']) ? $_POST['description'] : '';
+		if(!empty($_POST)){
+			$name = isset($_POST['name']) ? $_POST['name'] : '';
+			$pid = isset($_POST['pid']) ? $_POST['pid'] : 0;
+			$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+			$description = isset($_POST['description']) ? $_POST['description'] : '';
 
-		$post_data = [
-			'name' => $name,
-			'pid' => $pid,
-			'keywords' => $keywords,
-			'description' => $description,
-		];
-		if(!empty($name)){
-			if($this->Category_Model->add($post_data)){
-				toast(base_url('admin/category'), 2, '创建成功！');
-				return;
+			$post_data = [
+				'name' => $name,
+				'pid' => $pid,
+				'keywords' => $keywords,
+				'description' => $description,
+			];
+			if(!empty($name)){
+				if($this->Category_Model->add($post_data)){
+					toast(base_url('admin/category'), 2, '创建成功！');
+					return;
+				}
+				toast(base_url('admin/category/create'), 2, '创建失败!');
+
+			}else{
+				toast(base_url('admin/category/create'), 2, '表单数据不全，请完善后再提交!');
 			}
-			toast(base_url('admin/category/create'), 2, '创建失败!');
-
 		}else{
-			toast(base_url('admin/category/create'), 2, '表单数据不全，请完善后再提交!');
+			$cats = $this->Category_Model->getCategoryTree();
+			$data['categorys'] = $cats;
+			$this->load->view('admin/category_create.html', $data);
 		}
+		
 	}
 
 	public function delete(){
@@ -78,37 +85,38 @@ class Category extends Admin_Controller{
 	}
 
 	public function update(){
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$info = $this->Category_Model->getInfoById($id);
-		$cats = $this->Category_Model->getCategoryTree();
-		$data['categorys'] = $cats;
-		$data['info'] = $info;
-		$this->load->view('admin/category_update.html', $data);
-	}
-
-	public function edit(){
-		$id = isset($_POST['id']) ? $_POST['id'] : '';
-		$name = isset($_POST['name']) ? $_POST['name'] : '';
-		$pid = isset($_POST['pid']) ? $_POST['pid'] : 0;
-		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
-		$description = isset($_POST['description']) ? $_POST['description'] : '';
-
-		$post_data = [
-			'id' => $id,
-			'name' => $name,
-			'pid' => $pid,
-			'keywords' => $keywords,
-			'description' => $description
-		];
-		if($id && $name){
-			if($this->Category_Model->update($post_data)){
-				toast(base_url('admin/category'), 2, '修改成功！');
-				return;
-			}
-			toast(base_url('admin/category/update?id=').$id, 2, '修改失败!');
-
+		if(empty($_POST)){
+			$id = isset($_GET['id']) ? $_GET['id'] : 0;
+			$info = $this->Category_Model->getInfoById($id);
+			$cats = $this->Category_Model->getCategoryTree();
+			$data['categorys'] = $cats;
+			$data['info'] = $info;
+			$this->load->view('admin/category_update.html', $data);
 		}else{
-			toast(base_url('admin/category/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+			$id = isset($_POST['id']) ? $_POST['id'] : '';
+			$name = isset($_POST['name']) ? $_POST['name'] : '';
+			$pid = isset($_POST['pid']) ? $_POST['pid'] : 0;
+			$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+			$description = isset($_POST['description']) ? $_POST['description'] : '';
+
+			$post_data = [
+				'id' => $id,
+				'name' => $name,
+				'pid' => $pid,
+				'keywords' => $keywords,
+				'description' => $description
+			];
+			if($id && $name){
+				if($this->Category_Model->update($post_data)){
+					toast(base_url('admin/category'), 2, '修改成功！');
+					return;
+				}
+				toast(base_url('admin/category/update?id=').$id, 2, '修改失败!');
+
+			}else{
+				toast(base_url('admin/category/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+			}
 		}
 	}
+
 }

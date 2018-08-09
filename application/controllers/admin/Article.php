@@ -38,47 +38,79 @@ class Article extends Admin_Controller{
 		$this->load->view('admin/article_list.html', $data);
 	}
 
-	public function create(){
-		$cats = $this->Category_Model->getCategoryTree();
-		$data['categorys'] = $cats;
-		$this->load->view('admin/article_create.html', $data);
-	}
-
 	public function add(){
-		var_dump($_FILES);die;
-		$title = isset($_POST['title']) ? $_POST['title'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
-		$description = isset($_POST['description']) ? $_POST['description'] : '';
-		$content = isset($_POST['content']) ? $_POST['content'] : '';
-
-		$post_data = [
-			'title' => $title,
-			'alias' => $alias,
-			'keywords' => $keywords,
-			'description' => $description,
-			'content' => $content
-		];
-		if($title && $alias){
-			if($this->Pages_Model->add($post_data)){
-				toast(base_url('admin/article'), 2, '页面创建成功！');
-				return;
-			}
-			toast(base_url('admin/article/create'), 2, '页面创建失败!');
-
+		if(empty($_POST)){
+			$cats = $this->Category_Model->getCategoryTree();
+			$data['categorys'] = $cats;
+			$this->load->view('admin/article_create.html', $data);
 		}else{
-			toast(base_url('admin/article/create'), 2, '表单数据不全，请完善后再提交!');
+			$title = isset($_POST['title']) ? $_POST['title'] : '';
+			$category_id = isset($_POST['category_id']) ? $_POST['category_id'] : '';
+			$outlink = isset($_POST['outlink']) ? $_POST['outlink'] : '';
+			$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+			$summary = isset($_POST['summary']) ? $_POST['summary'] : '';
+			$author = isset($_POST['author']) ? $_POST['author'] : '';
+			$origin = isset($_POST['origin']) ? $_POST['origin'] : '';
+			$recommend = isset($_POST['recommend']) ? $_POST['recommend'] : 0;
+			$content = isset($_POST['content']) ? $_POST['content'] : '';
+
+			// 判断上传目录是否存在，不存在则创建。
+			$uploads = './uploads/';
+			if(!file_exists($uploads)){
+				mkdir($uploads);
+				chmod($uploads,0777);
+			}
+
+			// 上传图片
+			$config['upload_path'] = $uploads;
+			$config['file_name'] = time().mt_rand(100000,1000000);
+			$config['allowed_types'] = ['png','jpg','gif'];
+			$config['max_size'] = 1024;
+
+        	$this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('focus_img')){
+			$error = array('error' => $this->upload->display_errors());
+			toast(base_url('admin/article/add'), 2, $error['error']);
+        }else{
+			$data = array('upload_data' => $this->upload->data());
+			if($data['upload_data']['is_image'] == 1){
+				$focus_img = $data['upload_data']['file_name'];
+			}else{
+				toast(base_url('admin/article/add'), 2, '请上传合法的图片！');
+			}
+        }
+
+
+			
+			$post_data = [
+				'title' => $title,
+				'category_id' => $category_id,
+				'focus_img' => $focus_img,
+				'outlink' => $outlink,
+				'keywords' => $keywords,
+				'summary' => $summary,
+				'author' => $author,
+				'origin' => $origin,
+				'recommend' => $recommend,
+				'content' => $content,
+			];
+			if($title && $category_id && $content){
+				if($this->Article_Model->add($post_data)){
+					toast(base_url('admin/article'), 2, '页面创建成功！');
+					return;
+				}
+				toast(base_url('admin/article/add'), 2, '页面创建失败!');
+
+			}else{
+				toast(base_url('admin/article/add'), 2, '表单数据不全，请完善后再提交!');
+			}
 		}
 	}
 
 	public function delete(){
 		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		if($this->Pages_Model->delete($id)){
+		if($this->Article_Model->delete($id)){
 			toast($_SERVER['HTTP_REFERER'], 2, '删除成功！');
 		}else{
 			toast($_SERVER['HTTP_REFERER'], 2, '删除失败！');
@@ -86,37 +118,37 @@ class Article extends Admin_Controller{
 	}
 
 	public function update(){
-		$id = isset($_GET['id']) ? $_GET['id'] : 0;
-		$info = $this->Pages_Model->getInfoById($id);
-		$data['info'] = $info;
-		$this->load->view('admin/article_update.html', $data);
-	}
-
-	public function edit(){
-		$id = isset($_POST['id']) ? $_POST['id'] : '';
-		$title = isset($_POST['title']) ? $_POST['title'] : '';
-		$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
-		$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
-		$description = isset($_POST['description']) ? $_POST['description'] : '';
-		$content = isset($_POST['content']) ? $_POST['content'] : '';
-
-		$post_data = [
-			'id' => $id,
-			'title' => $title,
-			'alias' => $alias,
-			'keywords' => $keywords,
-			'description' => $description,
-			'content' => $content
-		];
-		if($id && $title && $alias){
-			if($this->Pages_Model->update($post_data)){
-				toast(base_url('admin/article'), 2, '修改成功！');
-				return;
-			}
-			toast(base_url('admin/article/update?id=').$id, 2, '修改失败!');
-
+		if(empty($_POST)){
+			$id = isset($_GET['id']) ? $_GET['id'] : 0;
+			$info = $this->Article_Model->getInfoById($id);
+			$data['info'] = $info;
+			$this->load->view('admin/article_update.html', $data);
 		}else{
-			toast(base_url('admin/article/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+			$id = isset($_POST['id']) ? $_POST['id'] : '';
+			$title = isset($_POST['title']) ? $_POST['title'] : '';
+			$alias = isset($_POST['alias']) ? $_POST['alias'] : '';
+			$keywords = isset($_POST['keywords']) ? $_POST['keywords'] : '';
+			$description = isset($_POST['description']) ? $_POST['description'] : '';
+			$content = isset($_POST['content']) ? $_POST['content'] : '';
+
+			$post_data = [
+				'id' => $id,
+				'title' => $title,
+				'alias' => $alias,
+				'keywords' => $keywords,
+				'description' => $description,
+				'content' => $content
+			];
+			if($id && $title && $alias){
+				if($this->Article_Model->update($post_data)){
+					toast(base_url('admin/article'), 2, '修改成功！');
+					return;
+				}
+				toast(base_url('admin/article/update?id=').$id, 2, '修改失败!');
+
+			}else{
+				toast(base_url('admin/article/update?id=').$id, 2, '表单数据不全，请完善后再提交!');
+			}
 		}
 	}
 }

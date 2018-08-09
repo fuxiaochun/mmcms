@@ -12,13 +12,8 @@
 </div>
 <div class="formWarp">
     <div class="formHandle">
-        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/category/create')?>">添加分类</a></div>
+        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/category/add')?>">添加分类</a></div>
         <div class="formSearch">
-            <form action="<?=site_url('admin/category/index')?>" method="get">
-              <label class="ml10">分类名称：</label>
-              <input type="text" name="s" class="mtxt" value="<?=$search;?>"/>
-              <input type="submit" class="scBtn ml10" value="查询" />
-            </form>
         </div>
     </div>
   
@@ -36,7 +31,7 @@
                 <th width="100">操作</th>
                 </tr>
                 <tr>
-                <td colspan="6" align="center">分类查询结果为0，去<a href="<?=site_url('admin/category/create')?>">创建分类</a></td>
+                <td colspan="6" align="center">分类查询结果为0，去<a href="<?=site_url('admin/category/add')?>">创建分类</a></td>
                 </tr>
             </tbody>
         </table>
@@ -54,7 +49,7 @@
           <?php foreach($category as $v):?>
           <tr>
             <td><?=$v['id'];?></td>
-            <td><?=$v['name'];?></td>
+            <td><?php echo str_repeat('——',$v['level']-1).' '.$v['name'];?></td>
             <td><?=$v['pid'];?></td>
             <td><?=$v['keywords'];?></td>
             <td><?=$v['description'];?></td>
@@ -63,7 +58,7 @@
           <?php endforeach;?>
         </tbody>
       </table>
-      <div class="pagination"><?php echo $list_page;?></div>
+      <div class="pagination"></div>
     <?php endif;?>
     </div>
     </form>
