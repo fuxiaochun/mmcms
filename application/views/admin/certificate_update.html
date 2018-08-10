@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>修改证书</title>
+<link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+</head>
+
+<body id="mainWarp">
+<div class="breadNav">
+  <span>当前位置：</span><span>证书管理</span><i>&gt;</i><span>修改证书</span>
+</div>
+<div class="formWarp">
+    <form id="form" action="<?=site_url('admin/certificate/update')?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?=$info['id']?>">
+        <ul>
+            <li><label class="formLabel"><span class="red">*</span>制作年份：</label>
+                <div class="formInput">
+                    <span><?=$info['year']?></span>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>证书编号：</label>
+                <div class="formInput">
+                    <span><?=$info['certificate']?></span>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>作品名称：</label>
+                <div class="formInput">
+                    <input type="text" id="name" name="name" class="mtxt" value="<?=$info['name']?>"/>
+                    <i>作品名称必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>材质：</label>
+                <div class="formInput">
+                    <input type="text" id="texture" name="texture" class="mtxt" value="<?=$info['texture']?>"/>
+                    <i>材质必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>尺寸：</label>
+                <div class="formInput">
+                    <input type="text" id="size" name="size" class="mtxt" value="<?=$info['size']?>"/>
+                    <i>尺寸必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>重量：</label>
+                <div class="formInput">
+                    <input type="text" id="weight" name="weight" class="mtxt" value="<?=$info['weight']?>"/>
+                    <i>重量必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel">产品图：</label>
+                <div class="formInput" id="productImg">
+                    <?php if($info['product_img'] == ''):?>
+                    <input type="file" id="product_img" name="product_img" class="mtxt"/>
+                    <?php else:?>
+                    <div class="thumb">
+                        <input type="hidden" name="product_img" value="<?=$info['product_img']?>">
+                        <img src="/certificate_imgs/<?=$info['year']?>/<?=$info['product_img']?>" alt="">
+                        <em class="close">×</em>
+                    </div>
+                    <?php endif;?>
+                    <i>产品图必传</i>
+                </div>
+            </li>
+            <li><label></label></li>
+            <li><label></label><input type="button" value="提 交" class="subBtn" /></li>
+        </ul>
+    </form>
+
+
+
+<script type="text/javascript" src="<?=base_url('public/js/jquery.min.js')?>"></script>
+<script type="text/javascript">
+$(function(){
+
+    var $name = $('#name');
+    var $texture = $('#texture');
+    var $size = $('#size');
+    var $weight = $('#weight');
+    var $product_img = $('#product_img');
+
+    $('#form').on('blur','input',function(){
+        checkVal($(this));
+    });
+    $('#form').on('change','select',function(){
+        checkSelect($(this));
+    });
+    function checkVal($el){
+        if($el.val().trim() === ''){
+            $el.siblings('i').addClass('show');
+            return false;
+        }else{
+            $el.siblings('i').removeClass('show');
+            return true;
+        }
+    }
+    function checkSelect($el){
+        if($el.val().trim() == '0'){
+            $el.siblings('i').addClass('show');
+            return false;
+        }else{
+            $el.siblings('i').removeClass('show');
+            return true;
+        }
+    }
+    function validate(){
+        var status = true;
+        !checkVal($name) && (status = false);
+        !checkVal($texture) && (status = false);
+        !checkVal($size) && (status = false);
+        !checkVal($weight) && (status = false);
+        !checkVal($product_img) && (status = false);
+        return status;
+    }
+    $('.subBtn').on('click',function(){
+        if(validate()){
+            $('#form').submit();
+        }
+    });
+
+    var $productImg = $('#productImg');
+    var $thumb = $productImg.find('.thumb');
+    var $thumbClose = $thumb.find('.close');
+    if($thumb.length){
+        $thumbClose.on('click',function(){
+            $thumb.remove();
+            $product_img = $('<input type="file" id="product_img" name="product_img" class="mtxt"/>');
+            $productImg.prepend($product_img);
+        })
+    }
+
+})
+</script>
+</div>
+</body>
+</html>

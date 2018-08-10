@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>创建证书</title>
+<link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+</head>
+
+<body id="mainWarp">
+<div class="breadNav">
+  <span>当前位置：</span><span>证书管理</span><i>&gt;</i><span>创建证书</span>
+</div>
+<div class="formWarp">
+    <form id="form" action="<?=site_url('admin/certificate/add')?>" method="post" enctype="multipart/form-data">
+        <ul>
+            <li><label class="formLabel"><span class="red">*</span>制作年份：</label>
+                <div class="formInput">
+                    <select name="year" id="year" class="mselect">
+                        <?php
+                            $curY = date('Y');
+                            $endY = $curY - 5;
+                            for($i=$curY;$i>$endY;$i--):
+                        ?>
+                        <option value="<?=$i?>"><?=$i;?></option>
+                        <?php endfor;?>
+                    </select>
+                    <i>制作年份必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>证书编号：</label>
+                <div class="formInput">
+                    <input type="text" id="certificate" name="certificate" class="mtxt"/>
+                    <i>证书编号必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>作品名称：</label>
+                <div class="formInput">
+                    <input type="text" id="name" name="name" class="mtxt"/>
+                    <i>作品名称必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>材质：</label>
+                <div class="formInput">
+                    <input type="text" id="texture" name="texture" class="mtxt"/>
+                    <i>材质必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>尺寸：</label>
+                <div class="formInput">
+                    <input type="text" id="size" name="size" class="mtxt"/>
+                    <i>尺寸必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel"><span class="red">*</span>重量：</label>
+                <div class="formInput">
+                    <input type="text" id="weight" name="weight" class="mtxt"/>
+                    <i>重量必填</i>
+                </div>
+            </li>
+            <li><label class="formLabel">产品图：</label>
+                <div class="formInput">
+                    <input type="file" id="product_img" name="product_img" class="mtxt"/>
+                    <i>产品图必传</i>
+                </div>
+            </li>
+            <li><label></label></li>
+            <li><label></label><input type="button" value="提 交" class="subBtn" /></li>
+        </ul>
+    </form>
+
+
+
+<script type="text/javascript" src="<?=base_url('public/js/jquery.min.js')?>"></script>
+<script type="text/javascript">
+$(function(){
+
+    var $year = $('#year');
+    var $certificate = $('#certificate');
+    var $name = $('#name');
+    var $texture = $('#texture');
+    var $size = $('#size');
+    var $weight = $('#weight');
+    var $product_img = $('#product_img');
+
+    $('#form').on('blur','input',function(){
+        checkVal($(this));
+    });
+    $('#form').on('change','select',function(){
+        checkSelect($(this));
+    });
+    function checkVal($el){
+        if($el.val().trim() === ''){
+            $el.siblings('i').addClass('show');
+            return false;
+        }else{
+            $el.siblings('i').removeClass('show');
+            return true;
+        }
+    }
+    function checkSelect($el){
+        if($el.val().trim() == '0'){
+            $el.siblings('i').addClass('show');
+            return false;
+        }else{
+            $el.siblings('i').removeClass('show');
+            return true;
+        }
+    }
+    function validate(){
+        var status = true;
+        !checkSelect($year) && (status = false);
+        !checkVal($certificate) && (status = false);
+        !checkVal($name) && (status = false);
+        !checkVal($texture) && (status = false);
+        !checkVal($size) && (status = false);
+        !checkVal($weight) && (status = false);
+        !checkVal($product_img) && (status = false);
+        return status;
+    }
+    $('.subBtn').on('click',function(){
+        if(validate()){
+            $('#form').submit();
+        }
+    });
+
+
+})
+</script>
+</div>
+</body>
+</html>

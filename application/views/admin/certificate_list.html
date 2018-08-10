@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>证书管理</title>
+<link rel="stylesheet" type="text/css" href="<?=base_url('public/css/style.css')?>" />
+</head>
+
+<body id="mainWarp">
+<div class="breadNav">
+  <span>当前位置：</span><span>证书管理</span><i>&gt;</i><span>证书列表</span>
+</div>
+<div class="formWarp">
+    <div class="formHandle">
+        <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/certificate/add')?>">添加证书</a></div>
+        <div class="formSearch">
+            <form action="<?=site_url('admin/certificate/index')?>" method="get">
+              <label class="ml10"></label>
+              <input type="text" name="s" class="mtxt" placeholder="输入编号进行查询" value="<?=$search;?>"/>
+              <input type="submit" class="scBtn ml10" value="查询" />
+            </form>
+        </div>
+    </div>
+  
+  <form action="" method="post">
+    <div class="mainList">
+    <?php if(empty($certificate)):?>
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr>
+                <th width="45">ID</th>
+                <th width="100">鉴赏图</th>
+                <th width="120">名称</th>
+                <th width="80">证书编号</th>
+                <th width="*">材质</th>
+                <th width="100">操作</th>
+                </tr>
+                <tr>
+                <td colspan="6" align="center">证书查询结果为0，去<a href="<?=site_url('admin/certificate/add')?>">创建证书</a></td>
+                </tr>
+            </tbody>
+        </table>
+    <?php else:?>
+      <table border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+          <tr>
+              <th width="45">ID</th>
+              <th width="80">鉴赏图</th>
+              <th width="150" class="align-center">名称</th>
+              <th width="100" class="align-center">证书编号</th>
+              <th width="*" class="align-center">材质</th>
+              <th width="100" class="align-center">操作</th>
+          </tr>
+          <?php foreach($certificate as $v):?>
+          <tr>
+            <td><?=$v['id'];?></td>
+            <td><div class="certificateImgThumb"><img src="/certificate_imgs/<?=$v['year']?>/<?=$v['product_img']?>"></div></td>
+            <td class="align-center"><?=$v['name'];?></td>
+            <td class="align-center"><?=$v['certificate'];?></td>
+            <td class="align-center"><?=$v['texture'];?></td>
+            <td class="align-center"><a href="<?=site_url('admin/certificate/update?id=').$v['id'];?>">修改</a> <a href="<?=site_url('admin/certificate/delete?id=').$v['id'];?>" onclick="return confirm('确认删除?');">删除</a></td>
+          </tr>
+          <?php endforeach;?>
+        </tbody>
+      </table>
+      <div class="pagination"><?php echo $list_page;?></div>
+    <?php endif;?>
+    </div>
+    </form>
+</div>
+</body>
+</html>

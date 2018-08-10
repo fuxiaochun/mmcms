@@ -11,9 +11,12 @@
   <span>当前位置：</span><span>网站管理后台欢迎页</span>
 </div>
 <div class="desTxt">
-  <p>欢迎你，Admin！</p>
-  <p>Author: 傅小椿</p>
-  <p>Time: 2018-03-11</p>
+  <p>欢迎你，<?=$user?>！</p>
+  <p>站点域名：<?=$info['domain']?></p>
+  <p>站点名称：<?=$info['name']?></p>
+  <p>网站关键词：<?=$info['keywords']?></p>
+  <p>网站描述：<?=$info['description']?></p>
+  <p><?=date('Y-m-d')?></p>
 </div>
 </body>
 </html>

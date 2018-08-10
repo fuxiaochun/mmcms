@@ -88,7 +88,8 @@ create table `certificate`(
 	`texture` varchar(50) not null,
 	`size` varchar(50) not null,
 	`weight` varchar(50) not null,
-	`product_img` varchar(50) not null
+	`product_img` varchar(50) not null,
+	UNIQUE (`certificate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
