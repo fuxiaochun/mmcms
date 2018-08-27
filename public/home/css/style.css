@@ -1,0 +1,259 @@
+html,body{margin: 0;padding: 0;font-family: 'Microsoft YaHei';font-size: 14px;}
+h1,h2,h3,p,ul,li,dl,dt,dd{margin: 0;padding: 0;}
+em,i{font-style: normal;}
+li{list-style: none;}
+a{text-decoration: none;color: #333;}
+a:hover{color: #ddad64;}
+.fl{float: left;}
+.fr{float: right;}
+.hide{display: none;}
+
+/* header */
+.header{
+    width: 100%;
+    height: 100px;
+    background: #2c1b14;
+}
+.header-main{
+    width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.logo{
+    padding: 10px;
+}
+.nav a{
+    font-size: 16px;
+    color: #FFF;
+    display: inline-block;
+    padding: 50px 0 20px 0;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 20px;
+}
+.nav a:hover{
+    color: #ddad64;
+    transform: scale(1.1,1.1);
+}
+
+/* footer */
+.footer{
+    width: 100%;
+    height: 150px;
+    background: #2c1b14;
+    margin-top: 50px;
+}
+.footer-main{
+    padding: 20px;
+    width: 1000px;
+    margin: 0 auto;
+    color: #FFF;
+    overflow: hidden;
+}
+.footer-main .copyright{
+    padding-left: 90px;
+    background: url('../image/footer_logo.png') no-repeat left center;
+    height: 80px;
+    margin-top: 10px;
+}
+.footer-main .copyright p{
+    height: 28px;
+    line-height: 28px;
+}
+.footer-main .wechat{
+    text-align: right;
+    margin-top: 5px;
+}
+.footer-main .wechat img{
+    margin-right: 10px;
+}
+
+/* public */
+.banner{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: url('../image/banner.jpg') no-repeat center;
+}
+.bread-nav{
+    width: 1000px;
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    margin: 0 auto;
+}
+.bread-nav span{
+    color: #666;
+}
+.main{
+    width: 1000px;
+    margin: 0 auto;
+    min-height: 500px;
+}
+
+/* index */
+.focus{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.focus li{
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+.focus li a{
+    display: block;
+    width: 100%;
+    height: 400px;
+}
+
+.section{
+    padding: 20px 0;
+}
+.block-title{
+    font-size: 24px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: normal;
+}
+.about-info{
+    color: #666;
+    line-height: 1.5;
+    padding: 10px;
+}
+.products{
+    font-size: 0;
+    margin-top: 10px;
+}
+.products li{
+    width: 230px;
+    height: 260px;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+}
+.products li:hover{
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+.products li a{
+    display: block;
+}
+.products li img{
+    width: 230px;
+    height: 230px;
+    border-radius: 5px;
+}
+.products li p{
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    padding-top: 10px;
+}
+.news dl{
+    padding: 10px;
+    border-bottom: 1px dashed #eee;
+}
+.news dt{
+    height: 40px;
+    line-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 18px;
+}
+.news dt span{
+    color: #999;
+    margin-right: 10px;
+}
+.news dd{
+    font-size: 14px;
+    color: #666;
+}
+
+/* list page */
+.article-list li{
+    padding-right: 200px;
+    height: 30px;
+    line-height: 30px;
+    padding: 20px 10px 10px 10px;
+    overflow: hidden;
+    border-bottom: 1px solid #EEE;
+}
+.article-list li:hover{
+    background: #f3f3f3;
+}
+.article-list li a{
+    display: block;
+}
+.article-list li span{
+    float: right;
+    color: #999;
+}
+
+/* info page */
+.article-title{
+    padding: 20px;
+}
+.article-title h1{
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 40px;
+}
+.article-title .sub-info{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #999;
+}
+.article-title .sub-info span{
+    padding: 0 20px;
+}
+.content{
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #666;
+}
+.content p{
+    padding: 5px 0;
+}
+.content img{
+    max-width: 700px;
+    display: block;
+    margin: 10px auto;
+}
+
+/* products list */
+.products-list{
+    font-size: 0;
+}
+.products-list li{
+    width: 220px;
+    height: 250px;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin: 10px 5px;
+}
+.products-list li:hover{
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+}
+.products-list li a{
+    display: block;
+}
+.products-list li img{
+    width: 220px;
+    height: 220px;
+    border-radius: 5px;
+}
+.products-list li p{
+    font-size: 14px;
+    text-align: center;
+    line-height: 20px;
+    padding-top: 10px;
+}
