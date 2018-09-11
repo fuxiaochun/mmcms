@@ -23,7 +23,9 @@
     </div>
     <div class="focus">
         <ul>
-            <li><a href="/" style="background: url('<?=base_url('public/home/image/focus.jpg')?>') no-repeat center"></a></li>
+            <?php foreach($focus as $v):?>
+            <li><a href="/" style="background: url('/uploads/<?=$v['focus_img'];?>') no-repeat center"></a></li>
+            <?php endforeach;?>
         </ul>
     </div>
     <div class="main">
@@ -37,48 +39,26 @@
             <h2 class="block-title"><a href="">作品欣赏</a></h2>
             <div class="products">
                 <ul>
+                    <?php foreach($products as $k=>$v):?>
                     <li>
                         <a href="">
-                            <img src="image/production.jpg" alt="">
-                            <p>貔貅</p>
+                            <img src="/uploads/<?=$v['focus_img']?>" alt="<?=$v['title']?>">
+                            <p><?=$v['title']?></p>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <img src="image/production.jpg" alt="">
-                            <p>貔貅</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="image/production.jpg" alt="">
-                            <p>貔貅</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="image/production.jpg" alt="">
-                            <p>貔貅</p>
-                        </a>
-                    </li>
+                    <?php endforeach;?>
                 </ul>
             </div>
         </div>
         <div class="section">
             <h2 class="block-title"><a href="">文章资讯</a></h2>
             <div class="news">
+                <?php foreach($article as $k=>$v):?>
                 <dl>
-                    <dt><span>[2015-05-13]</span><a href="">绿松石的鉴定</a></dt>
-                    <dd>天然的松石，和树叶一样，没有两片花纹颜色一模一样的，如果一整条项链或者手链，颜色，花纹都相似，那很有可能是假的。</dd>
+                    <dt><span><?php echo date_format($v['create_time'], 'Y-m-d');?></span><a href=""><?=$v['title']?></a></dt>
+                    <dd><?=$v['summary']?></dd>
                 </dl>
-                <dl>
-                    <dt><span>[2015-05-13]</span><a href="">绿松石的鉴定</a></dt>
-                    <dd>天然的松石，和树叶一样，没有两片花纹颜色一模一样的，如果一整条项链或者手链，颜色，花纹都相似，那很有可能是假的。</dd>
-                </dl>
-                <dl>
-                    <dt><span>[2015-05-13]</span><a href="">绿松石的鉴定</a></dt>
-                    <dd>天然的松石，和树叶一样，没有两片花纹颜色一模一样的，如果一整条项链或者手链，颜色，花纹都相似，那很有可能是假的。</dd>
-                </dl>
+                <?php endforeach;?>
             </div>
         </div>
     </div>

@@ -77,6 +77,8 @@ input, textarea{font-family: 'Microsoft YaHei';}
 
 .formHandle{padding: 10px 0;overflow: hidden;}
 .formHandle .addInfo{float: left;}
+.formHandle .categorySelect{float: left;margin-left: 150px;}
+.formHandle .select{height: 38px;line-height: 38px;outline: none;}
 .formHandle .formSearch{float: right;}
 .formHandle .addBtn{display: inline-block;padding: 10px 20px;border: 1px solid #CCC;}
 

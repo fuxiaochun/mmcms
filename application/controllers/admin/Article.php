@@ -10,18 +10,23 @@ class Article extends Admin_Controller{
 
 		$cur_page = isset($_GET['p']) ? $_GET['p'] : 1;
 		$search = isset($_GET['s']) ? $_GET['s'] : '';
+		$category_id = isset($_GET['cid']) ? $_GET['cid'] : 0;
 		$pages_count = $this->Article_Model->getCount($search);
 		$limit = 10;
 		$start = $limit * ($cur_page - 1);
-		$res = $this->Article_Model->getList($limit, $start, $search);
+		$res = $this->Article_Model->getListByCid($category_id, $limit, $start, $search);
 		$data['search'] = $search;
+		$data['cid'] = $category_id;
 		$data['article'] = $res;
+
+		$cats = $this->Category_Model->getCategoryTree();
+		$data['categorys'] = $cats;
 
 		$this->load->library('pagination');
 		if($search){
-			$config['base_url'] = base_url('/admin/article/index?s='.$search);
+			$config['base_url'] = base_url('/admin/article/index?cid='.$category_id.'&s='.$search);
 		}else{
-			$config['base_url'] = base_url('/admin/article/index');
+			$config['base_url'] = base_url('/admin/article/index?cid='.$category_id);
 		}
 		$config['total_rows'] = $pages_count;
 		$config['per_page'] = $limit;
@@ -93,7 +98,7 @@ class Article extends Admin_Controller{
 				'author' => $author,
 				'origin' => $origin,
 				'recommend' => $recommend,
-				'content' => $content,
+				'content' => $content
 			];
 			if($title && $category_id && $content){
 				if($this->Article_Model->add($post_data)){

@@ -13,8 +13,18 @@
 <div class="formWarp">
     <div class="formHandle">
         <div class="addInfo"><a class="addBtn" href="<?=site_url('admin/article/add')?>">添加内容</a></div>
+        <div class="categorySelect ml20">
+          分类筛选：
+          <select name="category" id="category" class="select">
+              <option <?php echo $cid == 0 ? 'selected' : ''; ?> value="0">全部分类</option>
+              <?php foreach($categorys as $k=>$v):?>
+              <option <?php echo $v['id']==$cid ? 'selected' : ''; ?> value="<?=$v['id']?>"><?php echo str_repeat('　', $v['level']-1);?><?=$v['name']?></option>
+              <?php endforeach;?>
+          </select>
+        </div>
         <div class="formSearch">
             <form action="<?=site_url('admin/article/index')?>" method="get">
+              <input type="hidden" name="cid" value="<?=$cid;?>">
               <label class="ml10"></label>
               <input type="text" name="s" class="mtxt" placeholder="输入标题进行查询" value="<?=$search;?>"/>
               <input type="submit" class="scBtn ml10" value="查询" />
@@ -64,6 +74,40 @@
     <?php endif;?>
     </div>
     </form>
+
+    <script type="text/javascript" src="<?=base_url('public/admin/js/jquery.min.js')?>"></script>
+    <script>
+      $(function(){
+        var $category = $('#category');
+        $category.on('change',function(){
+          var cid = $(this).val();
+          var locationSearch = location.search;
+          var searchStr = '';
+          var newSearch = '';
+          var args = [];
+          var argsJson = {};
+          if(locationSearch != ''){
+            searchStr = locationSearch.substr(1);
+            args = searchStr.split('&');
+            $.each(args, function(i, v){
+              var temp = [];
+              temp = v.split('=');
+              argsJson[temp[0]] = temp[1];
+            });
+            argsJson.cid = cid;
+            
+            $.each(argsJson, function(k,v){
+              newSearch += '&'+k+'='+v; 
+            });
+            newSearch = newSearch.substr(1);
+            
+          }else{
+            newSearch = 'cid='+cid;
+          }
+          location.href = location.href.split('?')[0] + '?' + newSearch;
+        });
+      });
+    </script>
 </div>
 </body>
 </html>
