@@ -98,7 +98,8 @@ class Article extends Admin_Controller{
 				'author' => $author,
 				'origin' => $origin,
 				'recommend' => $recommend,
-				'content' => $content
+				'content' => $content,
+				'create_time' => time()
 			];
 			if($title && $category_id && $content){
 				if($this->Article_Model->add($post_data)){
@@ -183,6 +184,7 @@ class Article extends Admin_Controller{
 				'origin' => $origin,
 				'recommend' => $recommend,
 				'content' => $content,
+				'update_time' => time()
 			];
 			if($id && $title && $category_id){
 				if($this->Article_Model->update($post_data)){

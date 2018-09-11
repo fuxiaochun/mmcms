@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name='description' content='青石玉雕工作室是一家从事玉器设计、雕刻、产品批发、零售、精品收藏的专业公司。产品精良，质量保障，欢迎广大新老顾客前来选购!咨询热线：15050191080，13812646413'>
+    <meta name='keywords' content='青石玉雕'>
     <title>青石玉雕</title>
     <link rel="stylesheet" href="<?=base_url('public/home/css/style.css')?>">
 </head>
@@ -55,26 +57,13 @@
             <div class="news">
                 <?php foreach($article as $k=>$v):?>
                 <dl>
-                    <dt><span><?php echo date_format($v['create_time'], 'Y-m-d');?></span><a href=""><?=$v['title']?></a></dt>
+                    <dt><span><?php echo date('Y-m-d', $v['create_time']);?></span><a href=""><?=$v['title']?></a></dt>
                     <dd><?=$v['summary']?></dd>
                 </dl>
                 <?php endforeach;?>
             </div>
         </div>
     </div>
-    <div class="footer">
-        <div class="footer-main">
-            <div class="copyright fl">
-                <p>服务热线：15050191080   13812646413</p>
-                <p>地址：苏州市姑苏区十全街385号</p>
-                <p>Copyright © 2009-2018 青石玉雕工作室版权所有   渝ICP备 87897345号</p>
-            </div>
-            <div class="wechat fr">
-                <img src="/public/home/image/wx_1.jpg" alt="微信扫一扫关注我们">
-                <img src="/public/home/image/wx_2.jpg" alt="微信扫一扫关注我们">
-                <img src="/public/home/image/wx_3.jpg" alt="微信扫一扫关注我们">
-            </div>
-        </div>
-    </div>
+    <?php $this->load->view('home/footer.html'); ?>
 </body>
 </html>

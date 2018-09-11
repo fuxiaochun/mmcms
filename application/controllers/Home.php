@@ -24,8 +24,6 @@ class Home extends CI_Controller {
 		$article = $this->Article_Model->getListByCid(2,4,0);
 		$data['article'] = $article;	
 		
-		var_dump($data);
-
 		$this->load->view('home/index.html', $data);
 	}
 
