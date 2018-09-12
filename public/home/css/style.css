@@ -262,3 +262,12 @@ a:hover{color: #ddad64;}
     line-height: 20px;
     padding-top: 10px;
 }
+
+.pagination{
+    padding: 10px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.pagination a,.pagination span{display: inline-block;border: 1px solid #CCC;height:20px;line-height:20px;padding:5px 10px;text-align:center;margin: 0 5px;}
+.pagination span{font-weight: bold;cursor: auto;}

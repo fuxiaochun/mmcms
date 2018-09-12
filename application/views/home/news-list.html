@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name='description' content="<?=$category['description']?>">
+    <meta name='keywords' content="<?=$category['keywords']?>">
+    <title><?=$category['name']?>-<?=$head['name']?></title>
+    <link rel="stylesheet" href="<?=base_url('public/home/css/style.css')?>">
+</head>
+<body>
+    <?php $this->load->view('home/header.html');?>
+    <div class="banner"></div>
+    <div class="bread-nav">
+        <span>当前位置：</span>
+        <a href="/news/"><?=$category['name']?></a>
+    </div>
+    <div class="main">
+        <div class="article-list">
+            <ul>
+                <?php foreach($article as $v):?>
+                <li>
+                    <span><?=date('Y-m-d', $v['create_time'])?></span>
+                    <a href="/news/<?=$v['id']?>"><?=$v['title']?></a>
+                </li>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <div class="pagination"><?=$list_page;?></div>
+    </div>
+    <?php $this->load->view('home/footer.html');?>
+</body>
+</html>

@@ -32,6 +32,12 @@ class Article_Model extends Base_Model{
         return $this->db->count_all_results('article');
     }
 
+    public function getCountByCid($cid){
+        $this->db->where('category_id=',$cid);
+        $this->db->where('del<>',1);
+        return $this->db->count_all_results('article');
+    }
+
     public function add($data=[]){
 		if(!empty($data)){
 			return $this->db->insert('article',$data);

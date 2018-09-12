@@ -5,22 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>青石玉雕</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?=base_url('public/home/css/style.css')?>">
 </head>
 <body>
-    <div class="header">
-        <div class="header-main">
-            <div class="logo fl"><a title="青石玉雕" href="/"><img src="image/logo.png" alt="青石玉雕"></a></div>
-            <div class="nav fr">
-                <a href="/">网站首页</a>
-                <a href="/">关于我们</a>
-                <a href="/">文章资讯</a>
-                <a href="/">作品欣赏</a>
-                <a href="/">证书查询</a>
-                <a href="/">联系我们</a>
-            </div>
-        </div>
-    </div>
+    <?php $this->load->view('home/header.html');?>
     <div class="banner">
         <ul>
             <li><a href="/" style="background: url('image/banner.jpg') no-repeat center"></a></li>

@@ -4,25 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name='description' content='青石玉雕工作室是一家从事玉器设计、雕刻、产品批发、零售、精品收藏的专业公司。产品精良，质量保障，欢迎广大新老顾客前来选购!咨询热线：15050191080，13812646413'>
-    <meta name='keywords' content='青石玉雕'>
-    <title>青石玉雕</title>
+    <meta name='description' content="<?=$head['description']?>">
+    <meta name='keywords' content="<?=$head['keywords']?>">
+    <title><?=$head['name']?></title>
     <link rel="stylesheet" href="<?=base_url('public/home/css/style.css')?>">
 </head>
 <body>
-    <div class="header">
-        <div class="header-main">
-            <div class="logo fl"><a title="青石玉雕" href="/"><img src="<?=base_url('public/home/image/logo.png')?>" alt="青石玉雕"></a></div>
-            <div class="nav fr">
-                <a href="/">网站首页</a>
-                <a href="/">关于我们</a>
-                <a href="/">文章资讯</a>
-                <a href="/">作品欣赏</a>
-                <a href="/">证书查询</a>
-                <a href="/">联系我们</a>
-            </div>
-        </div>
-    </div>
+    <?php $this->load->view('home/header.html');?>
     <div class="focus">
         <ul>
             <?php foreach($focus as $v):?>
@@ -32,13 +20,13 @@
     </div>
     <div class="main">
         <div class="section">
-            <h2 class="block-title"><a href="/about.html">关于我们</a></h2>
+            <h2 class="block-title"><a href="/about/">关于我们</a></h2>
             <div class="about-info">
                 <?=$about_us;?>
             </div>
         </div>
         <div class="section">
-            <h2 class="block-title"><a href="">作品欣赏</a></h2>
+            <h2 class="block-title"><a href="/production/">作品欣赏</a></h2>
             <div class="products">
                 <ul>
                     <?php foreach($products as $k=>$v):?>
@@ -53,11 +41,11 @@
             </div>
         </div>
         <div class="section">
-            <h2 class="block-title"><a href="">文章资讯</a></h2>
+            <h2 class="block-title"><a href="/news/">文章资讯</a></h2>
             <div class="news">
                 <?php foreach($article as $k=>$v):?>
                 <dl>
-                    <dt><span><?php echo date('Y-m-d', $v['create_time']);?></span><a href=""><?=$v['title']?></a></dt>
+                    <dt><span><?php echo date('Y-m-d', $v['create_time']);?></span><a href="/news/<?=$v['id']?>"><?=$v['title']?></a></dt>
                     <dd><?=$v['summary']?></dd>
                 </dl>
                 <?php endforeach;?>
