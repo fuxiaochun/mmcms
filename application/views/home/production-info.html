@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name='description' content="<?=$production['summary']?>">
+    <meta name='keywords' content="<?=$production['keywords']?>">
+    <title><?=$production['title']?>-<?=$category['name']?>-<?=$head['name']?></title>
+    <link rel="stylesheet" href="<?=base_url('public/home/css/style.css')?>">
+</head>
+<body>
+    <?php $this->load->view('home/header.html');?>
+    <div class="banner"></div>
+    <div class="bread-nav">
+        <span>当前位置：</span>
+        <a href="/production/"><?=$category['name']?></a>
+    </div>
+    <div class="main">
+        <div class="article-title">
+            <h1><?=$production['title']?></h1>
+            <div class="sub-info">
+                <span>来源：<?=$production['origin']?></span>
+                <span>发布时间：<?=date('Y-m-d', $production['create_time'])?></span>
+            </div>
+        </div>
+        <div class="content">
+            <p><img src="/uploads/<?=$production['focus_img']?>" alt="<?=$production['title']?>"></p>
+            <?=$production['content']?>
+        </div>
+    </div>
+    <?php $this->load->view('home/footer.html');?>
+</body>
+</html>

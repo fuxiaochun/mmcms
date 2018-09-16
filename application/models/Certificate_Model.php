@@ -33,6 +33,14 @@ class Certificate_Model extends Base_Model{
             $query = $this->db->get('certificate');
             return $query -> row_array();
         }
+    }
+    
+    public function getInfoByCertificete($code){
+        if($code){
+            $this->db->where('certificate', $code);
+            $query = $this->db->get('certificate');
+            return $query -> row_array();
+        }
 	}
 	
 	public function getCountByCertificate($id){

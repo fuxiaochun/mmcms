@@ -56,3 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['news/'] = 'news/index/p/1';
 $route['news/p/(:num)'] = 'news/index/p/$1';
 $route['news/(:num)'] = 'news/info/id/$1';
+
+$route['production/'] = 'production/index/p/1';
+$route['production/p/(:num)'] = 'production/index/p/$1';
+$route['production/(:num)'] = 'production/info/id/$1';

@@ -271,3 +271,57 @@ a:hover{color: #ddad64;}
 }
 .pagination a,.pagination span{display: inline-block;border: 1px solid #CCC;height:20px;line-height:20px;padding:5px 10px;text-align:center;margin: 0 5px;}
 .pagination span{font-weight: bold;cursor: auto;}
+
+/* 证书查询 */
+.search-certificate{
+    width: 800px;
+    margin: 20px auto;
+}
+.search-certificate .search-box{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.search-box .txt{
+    margin: 0 10px;
+    padding: 10px;
+    width: 300px;
+    height: 40px;
+    line-height: 20px;
+    border:1px solid #CCC;
+    box-sizing: border-box;
+}
+.search-box .search-btn{width:80px;height:40px;border:none;background-color:#069;color:#FFF;font-size:14px;font-weight:bold;border-radius:3px;cursor:pointer;}
+.certificate-info{
+    width: 800px;
+    margin: 20px auto;
+}
+.certificate-info .err{
+    text-align: center;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 50px;
+    color: rgb(119, 0, 0);
+}
+.certificate-info .img{
+    width: 400px;
+    height: 400px;
+    float: left;
+    overflow: hidden;
+}
+.certificate-info .img image{
+    width: 400px;
+    height: 400px;
+}
+.certificate-info .info{
+    width: 380px;
+    float: right;
+}
+.certificate-info .info li{
+    height: 30px;
+    line-height: 30px;
+    padding: 10px;
+    border-bottom: 1px dashed #EEE;
+    font-size: 16px;
+}

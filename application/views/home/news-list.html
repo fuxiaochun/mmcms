@@ -18,6 +18,9 @@
     </div>
     <div class="main">
         <div class="article-list">
+            <?php if(empty($article)):?>
+            <p>暂无内容，敬请期待</p>
+            <?php else:?>
             <ul>
                 <?php foreach($article as $v):?>
                 <li>
@@ -26,6 +29,7 @@
                 </li>
                 <?php endforeach;?>
             </ul>
+            <?php endif;?>
         </div>
         <div class="pagination"><?=$list_page;?></div>
     </div>

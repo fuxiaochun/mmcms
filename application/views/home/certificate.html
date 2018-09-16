@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name='description' content="<?=$head['description']?>">
+    <meta name='keywords' content="<?=$head['keywords']?>">
+    <title><?=$head['name']?></title>
+    <link rel="stylesheet" href="<?=base_url('public/home/css/style.css')?>">
+</head>
+<body>
+    <?php $this->load->view('home/header.html');?>
+    <div class="banner"></div>
+    <div class="bread-nav">
+        <span>当前位置：</span>
+        <a href="/certificate/">证书查询</a>
+    </div>
+    <div class="main">
+        <div class="search-certificate">
+            <div class="search-box">
+                <label for="">请输入证书编号</label>
+                <input type="text" class="txt" id="code" name="code">
+                <input type="button" class="search-btn" value="查询">
+            </div>
+        </div>
+        <div class="certificate-info">
+            <p class="err">经查证，该证书编号无效</p>
+            <div class="img"><img src="" alt=""></div>
+            <div class="info">
+                <ul>
+                    <li><b>证书编号：</b><span></span></li>
+                    <li><b>证书编号：</b><span></span></li>
+                    <li><b>证书编号：</b><span></span></li>
+                    <li><b>证书编号：</b><span></span></li>
+                    <li><b>证书编号：</b><span></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <?php $this->load->view('home/footer.html');?>
+    <script type="text/javascript" src="<?=base_url('public/admin/js/jquery.min.js')?>"></script>
+    <script>
+        $(function(){
+            var $code = $('#code');
+            var $btn = $('.search-btn');
+
+            $btn.on('click', function(){
+                var code = $code.val().trim();
+                if(code !== ''){
+                    $.ajax({
+                        url: '/certificate/getCertificateByCode?code='+code,
+                        method: 'GET',
+                        data: 'json',
+                        success: function(data){
+                            console.log(data);
+                            if(data.status == 1){
+                                renderInfo(data.data);
+                            }else{
+                                renderTips('');
+                            }
+                        },
+                        error: function(err){
+                            console.log(err);
+                        },
+                        complete: function(){
+                            //
+                        }
+                    });
+                }
+            });
+        });
+
+        function renderInfo(data){
+            var html = '';
+
+        }
+    </script>
+</body>
+</html>
