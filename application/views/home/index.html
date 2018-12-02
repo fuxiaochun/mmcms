@@ -14,7 +14,7 @@
     <div class="focus">
         <ul>
             <?php foreach($focus as $v):?>
-            <li><a href="/" style="background: url('/uploads/<?=$v['focus_img'];?>') no-repeat center"></a></li>
+            <li><a href="<?=$v['outlink']?>" style="background: url('/uploads/<?=$v['focus_img'];?>') no-repeat center"></a></li>
             <?php endforeach;?>
         </ul>
     </div>
@@ -45,7 +45,7 @@
             <div class="news">
                 <?php foreach($article as $k=>$v):?>
                 <dl>
-                    <dt><span><?php echo date('Y-m-d', $v['create_time']);?></span><a href="/news/<?=$v['id ']?>"><?=$v['title']?></a></dt>
+                    <dt><span><?php echo date('Y-m-d', $v['create_time']);?></span><a href="/news/<?=$v['id']?>"><?=$v['title']?></a></dt>
                     <dd><?=$v['summary']?></dd>
                 </dl>
                 <?php endforeach;?>

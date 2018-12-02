@@ -20,23 +20,11 @@
         <div class="search-certificate">
             <div class="search-box">
                 <label for="">请输入证书编号</label>
-                <input type="text" class="txt" id="code" name="code">
+                <input type="text" placeholder="请输入完整的证书编号" class="txt" id="code" name="code">
                 <input type="button" class="search-btn" value="查询">
             </div>
         </div>
-        <div class="certificate-info">
-            <p class="err">经查证，该证书编号无效</p>
-            <div class="img"><img src="" alt=""></div>
-            <div class="info">
-                <ul>
-                    <li><b>证书编号：</b><span></span></li>
-                    <li><b>证书编号：</b><span></span></li>
-                    <li><b>证书编号：</b><span></span></li>
-                    <li><b>证书编号：</b><span></span></li>
-                    <li><b>证书编号：</b><span></span></li>
-                </ul>
-            </div>
-        </div>
+        <div class="certificate-info"></div>
     </div>
     <?php $this->load->view('home/footer.html');?>
     <script type="text/javascript" src="<?=base_url('public/admin/js/jquery.min.js')?>"></script>
@@ -51,17 +39,16 @@
                     $.ajax({
                         url: '/certificate/getCertificateByCode?code='+code,
                         method: 'GET',
-                        data: 'json',
+                        dataType: 'json',
                         success: function(data){
-                            console.log(data);
                             if(data.status == 1){
                                 renderInfo(data.data);
                             }else{
-                                renderTips('');
+                                renderTips();
                             }
                         },
                         error: function(err){
-                            console.log(err);
+                            console.log('网络连接失败，请稍后再试');
                         },
                         complete: function(){
                             //
@@ -71,9 +58,22 @@
             });
         });
 
+        function renderTips(){
+            $('.certificate-info').removeClass('border').html('<p class="err">此编号未查到有效证书信息</p>');
+        }
+
         function renderInfo(data){
             var html = '';
-
+            var imgUrl = '/certificate_imgs/'+data.year+'/'+data.product_img;
+                html += '<div class="img"><img src="'+imgUrl+'" alt="'+data.name+'"></div>';
+                html += '<div class="info"><h3 class="title">青石玉雕作品证书</h3><ul>';
+                html += '<li><b>证书编号：</b><span>'+data.certificate+'</span></li>';
+                html += '<li><b>名　　称：</b><span>'+data.name+'</span></li>';
+                html += '<li><b>材　　质：</b><span>'+data.texture+'</span></li>';
+                html += '<li><b>尺　　寸：</b><span>'+data.size+'</span></li>';
+                html += '<li><b>重　　量：</b><span>'+data.weight+'</span></li>';
+                html += '</ul></div>';
+            $('.certificate-info').addClass('border').html(html);
         }
     </script>
 </body>

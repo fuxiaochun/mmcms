@@ -18,7 +18,7 @@ create table `manager`(
 	`del` tinyint(1) default 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-insert into manager values(null, 'admin', md5('admin023'), '023', 0, '','', 0);
+insert into manager values(null, 'eleven', md5('eleven11'), '023', 1, '','', 0);
 
 /*网站信息表*/
 create table `site_info`(

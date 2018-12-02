@@ -1,6 +1,6 @@
 <?php
 
-class SiteInfo extends Admin_Controller{
+class Siteinfo extends Admin_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('SiteInfo_Model');
