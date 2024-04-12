@@ -18,7 +18,6 @@ create table `manager`(
 	`del` tinyint(1) default 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-insert into manager values(null, 'eleven', md5('eleven11'), '023', 1, '','', 0);
 
 /*网站信息表*/
 create table `site_info`(
@@ -29,7 +28,6 @@ create table `site_info`(
 	`domain` varchar(100) default ''
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
-insert into `site_info` values(null, '青石玉雕', '青石玉雕，玉石，玉雕', '青石玉雕', 'http://mmcms.com');
 
 /*分类表*/
 create table `category`(
